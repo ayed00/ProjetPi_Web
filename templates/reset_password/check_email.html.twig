@@ -1,0 +1,23 @@
+{% extends 'base_login.html.twig' %}
+
+{% block title %}<!-- Mobile Specific Meta -->
+    <title>Learn4u-password forgotten</title>
+{% endblock %}
+{% block image %}
+{% endblock %}
+{% block form %}
+    <p class="txt2">
+        If an account matching your email exists, then an email was just sent that contains a link that you can use to reset your password.
+        This link will expire in {{ resetToken.expirationMessageKey|trans(resetToken.expirationMessageData, 'ResetPasswordBundle') }}.
+    </p>
+    <p class="txt2">If you don't receive an email please check your spam folder or
+        <a href="{{ path('app_forgot_password_request') }}">
+            <i class="fa fa-long-arrow-right m-l-5" aria-hidden="true"></i>
+            try again
+        </a>.
+    </p>
+{% endblock %}
+
+
+
+

@@ -1,0 +1,16 @@
+{% extends 'base_login.html.twig' %}
+
+{% block title %}
+    <title>Learn4u-Sign up!</title>
+{% endblock %}
+{% block form %}
+
+    <h1 class="text-black" >Your Password Reset is Successful.you can login now !</h1>
+    <div class="text-center p-t-136">
+        <a class="txt2" href="{{ path('app_login') }}">
+            Login
+            <i class="fa fa-long-arrow-right m-l-5" aria-hidden="true"></i>
+        </a>
+    </div>
+
+{% endblock %}

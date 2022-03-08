@@ -1,0 +1,63 @@
+{% extends 'base_login.html.twig' %}
+
+{% block title %}
+    <title>Learn4u-Sign up!</title>
+{% endblock %}
+
+{% block form %}
+    {% for flashError in app.flashes('verify_email_error') %}
+        <div class="alert alert-danger" role="alert">{{ flashError }}</div>
+    {% endfor %}
+
+    <span class="login100-form-title">
+						Sign Up
+					</span>
+
+    {{ form_start(registrationForm) }}
+    <table>
+        <tr>
+            <td class="text-black">{{ form_label(registrationForm.fullname,"Full name :") }}</td>
+            <td >{{ form_widget(registrationForm.fullname,{'attr': {'class': 'input100 form-control'}}) }}</td>
+            <td class="text-black">{{ form_errors(registrationForm.fullname) }}</td>
+        </tr>
+        <tr>
+             <td class="text-black">{{ form_label(registrationForm.email,"Email :") }}</td>
+             <td >{{ form_widget(registrationForm.email,{'attr': {'class': 'input100 form-control'}}) }}</td>
+             <td class="text-black">{{ form_errors(registrationForm.email) }}</td>
+        </tr>
+        <tr>
+            <td class="text-black">{{ form_label(registrationForm.Username,"Username :") }}</td>
+            <td >{{ form_widget(registrationForm.Username,{'attr': {'class': 'input100 form-control'}}) }}</td>
+            <td class="text-black">{{ form_errors(registrationForm.Username) }}</td>
+        </tr>
+        <tr>
+             <td class="text-black">{{ form_label(registrationForm.plainPassword,"Password :") }}</td>
+             <td >{{ form_widget(registrationForm.plainPassword,{'attr': {'class': 'input100 form-control'}}) }}</td>
+             <td class="text-black">{{ form_errors(registrationForm.plainPassword) }}</td>
+        </tr>
+        <tr>
+            <td class="text-black">{{ form_label(registrationForm.naissance,"Birthday:") }}</td>
+            <td>{{ form_widget(registrationForm.naissance ) }}</td>
+            <td class="text-black">{{ form_errors(registrationForm.naissance) }}</td>
+        </tr>
+        <tr>
+            <td class="text-black">{{ form_label(registrationForm.agreeTerms,"Agree terms :") }}</td>
+            <td >{{ form_widget(registrationForm.agreeTerms) }}</td>
+            <td class="text-black">{{ form_errors(registrationForm.agreeTerms) }}</td>
+        </tr>
+        {#  <div class="row">
+            <div class="col-md-4 offset-md-4" >
+                <label>Are you a robot ?</label>
+                {{ form_widet(registrationForm.captchaCode) }}
+            </div>
+        </div>#}
+        <tr>
+             <td><button type="submit" class="txt2">
+                     <i class="fa fa-long-arrow-right m-l-5" aria-hidden="true"></i>
+                     Sign up
+                     </button></td>
+        </tr>
+    </table>
+    {{ form_end(registrationForm) }}
+{% endblock %}
+

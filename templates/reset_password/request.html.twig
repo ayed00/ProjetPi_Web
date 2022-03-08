@@ -1,0 +1,40 @@
+{% extends 'base_login.html.twig' %}
+
+{% block title %}
+    <title>Learn4u-Reset password</title>
+{% endblock %}
+
+
+{% block form %}
+    <div class="login100-form validate-form">
+    {% for flashError in app.flashes('reset_password_error') %}
+        <div class="alert alert-danger" role="alert">{{ flashError }}</div>
+    {% endfor %}
+
+    <h1 class="text-black">Reset your password</h1>
+
+    {{ form_start(requestForm) }}
+          <tr>
+              <td class="text-black">{{ form_label(requestForm.email,"Email :") }}</td>
+              <td class="table"><div  data-validate = "Valid email is required: ex@abc.xyz">
+                     {{ form_widget(requestForm.email,{'attr': {'class': 'input100 form-control'}}) }}
+                      <span class="focus-input100"></span>
+                  </div>
+              </td>
+              <td class="text-black">{{ form_errors(requestForm.email) }}</td>
+          </tr>
+        <div>
+            <small class="text-black">
+                Enter your email address and we will send you a
+                link to reset your password.
+            </small>
+        </div>
+
+        <button class="btn" type="submit">Send password reset email
+            <i class="fa fa-long-arrow-right m-l-5" aria-hidden="true"></i>
+        </button>
+    {{ form_end(requestForm) }}
+    </div>
+
+{% endblock %}
+
