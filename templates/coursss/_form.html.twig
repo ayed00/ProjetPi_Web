@@ -1,0 +1,55 @@
+
+{{ form_start(form,{'attr': {'novalidate': 'novalidate'}}) }}
+<main class="site-main page-wrapper woocommerce single single-product">
+
+    <section class="space-3">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="woocommerce-notices-wrapper"></div>
+
+                    <div class="woocommerce-form woocommerce-form-login login" method="post">
+                        <p class="woocommerce-form-row woocommerce-form-row--wide form-row form-row-wide">
+                            {{ form_label(form.nom) }}<span class="required">*</span>
+                            {{ form_widget(form.nom,{'attr':{'class':'woocommerce-Input woocommerce-Input--text input-text form-control'}}) }}<span class="required">*</span>
+                            {{ form_errors(form.nom) }}
+                        </p>
+                        <p class="woocommerce-form-row woocommerce-form-row--wide form-row form-row-wide" >
+                            {{ form_label(form.description) }}<span class="required">*</span>
+                            {{ form_widget(form.description,{'attr':{'class':'woocommerce-button button woocommerce-form-login__submit'}  }) }}
+                            {{ form_errors(form.description) }}
+                        </p>
+                        <p class="woocommerce-form-row woocommerce-form-row--wide form-row form-row-wide">
+                            {{ form_label(form.video) }}<span class="required">*</span>
+
+                            {{ form_widget(form.video,{'attr':{'class':'woocommerce-Input woocommerce-Input--text input-text form-control'}}) }}<span class="required">*</span>
+                            {{ form_errors(form.video) }}
+                        </p>
+                        <p class="woocommerce-form-row woocommerce-form-row--wide form-row form-row-wide">
+                            <label for="exampleSelectCategory">Formmattion</label>
+                            {{ form_widget(form.formations, {'attr' : {'class' : 'form-control' }}  ) }}
+
+                        </div>
+
+
+
+
+
+
+
+                    </div>
+                </div>
+
+            </div>
+        <button type="submit" class="woocommerce-button button woocommerce-form-login__submit" value="Save">{{ button_label|default('Save') }}</button>
+        </div>
+    </section>
+</main>
+
+{{ form_widget(form) }}
+<p class="form-row">
+    <input type="hidden" id="woocommerce-login-nonce" name="woocommerce-login-nonce" value="a414dce984"><input type="hidden" name="_wp_http_referer" value="/my-account/">
+    <button type="submit" class="woocommerce-button button woocommerce-form-login__submit" value="Save">{{ button_label|default('Save') }}</button>
+</p>
+
+{{ form_end(form) }}

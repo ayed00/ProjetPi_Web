@@ -9,11 +9,20 @@ use Symfony\Component\Routing\Annotation\Route;
 class BaseController extends AbstractController
 {
     /**
-     * @Route("/base", name="base")
+     * @Route("/", name="base")
      */
     public function index(): Response
     {
         return $this->render('base_FRONT.html.twig', [
+            'controller_name' => 'BaseController',
+        ]);
+    }
+    /**
+     * @Route("/admin", name="admin")
+     */
+    public function index3(): Response
+    {
+        return $this->render('base_test.html.twig', [
             'controller_name' => 'BaseController',
         ]);
     }
@@ -26,5 +35,4 @@ class BaseController extends AbstractController
             'controller_name' => 'BaseController',
         ]);
     }
-
 }

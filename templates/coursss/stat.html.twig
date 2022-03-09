@@ -1,0 +1,40 @@
+{% extends 'base_BACK.html.twig' %}
+
+{% block title %}Statistiques{% endblock %}
+{% block back_content %}
+
+    <div class="container">
+        <canvas id="myChart" width="400" height="100"></canvas>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.1/chart.min.js" ></script>
+    <script>
+        const ctx = document.getElementById('myChart').getContext("2d");
+        const myChart = new Chart(ctx, {
+            type: "pie",//pie,bar,
+            data: {
+                labels: {{label |raw}},
+                datasets: [{
+                    label: {{label |raw}},
+                    data: {{count|raw}},
+                    backgroundColor: [
+                        'red',
+                        'blue',
+                        'green',
+
+                    ],
+
+                    hoverBorderWidth: 1
+                }]
+            },
+            options: {
+                title: {
+                    display:true,
+                    text: "statistique ",
+
+                },
+
+
+            }
+        });
+    </script>
+{% endblock %}

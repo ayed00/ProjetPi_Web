@@ -1,0 +1,48 @@
+<style>
+    body{
+        font:normal 12px/20PX "Liberation sans", Arial, Helvetica, sans-serif;
+        color:#585858;
+    }
+    img{
+        width:200px;
+        margin:100px;
+
+    }
+</style>
+
+
+<div></div>
+<img src='data:image;base64,<?= {{ img64 }};?>' />
+
+<h1> Listes des formations</h1>
+
+    <table class="table" border="1">
+        <thead>
+        <tr>
+            <th>Id</th>
+            <th>Nom</th>
+            <th>Description</th>
+
+            <th>Prix</th>
+            <th>Datede</th>
+            <th>Datefi</th>
+
+        </tr>
+        </thead>
+        <tbody>
+        {% for formmattion in formmattion %}
+            <tr>
+                <td>{{ formmattion.id }}</td>
+                <td>{{ formmattion.nom }}</td>
+                <td>{{ formmattion.description }}</td>
+
+                <td>{{ formmattion.prix }}</td>
+                <td>{{ formmattion.datede ? formmattion.datede|date('Y-m-d') : '' }}</td>
+                <td>{{ formmattion.datefi ? formmattion.datefi|date('Y-m-d') : '' }}</td>
+
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+

@@ -1,0 +1,40 @@
+{% extends 'base_BACK.html.twig' %}
+
+{% block title %}Users List{% endblock %}
+
+{% block back_content %}
+<h1>My Profile</h1>
+
+<table class="table" >
+    <tbody id="tableac" name="tableac">
+    <tr>
+        <th>photo</th>
+       <td> <img class="avatar border-gray"  src="{{ asset('uploads/' ~  user.Photo ) }}" height="100px" width="150px" ></td>
+    </tr>
+    <tr>
+        <th>Full name</th>
+        <td>{{ user.fullname }}</td>
+    </tr>
+    <tr>
+        <th>Username</th>
+        <td>{{ user.Username }}</td>
+    </tr>
+    <tr>
+        <th>Email</th>
+        <td>{{ user.email }}</td>
+    </tr>
+    <tr>
+        <th>Birthday</th>
+        <td>{{ user.naissance|date("m/d/y")  }}</td>
+    </tr>
+    <tr>
+        <th>Account verification :</th>
+        <td>{{ user.isVerified ?'Verified':'NOT Verified' }}</td>
+    </tr>
+    </tbody>
+</table>
+
+    <a href="{{ path('user_editaccount', {'id': user.id}) }}" class="btn"> Edit Account</a>
+{% endblock %}
+{% block back_footer %}
+{% endblock %}

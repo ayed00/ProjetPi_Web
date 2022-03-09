@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\UserRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\UserInterface;
@@ -14,6 +16,7 @@ use Captcha\Bundle\CaptchaBundle\Validator\Constraints as CaptchaAssert;
 /**
  * @ORM\Entity(repositoryClass=UserRepository::class)
  * @UniqueEntity(fields={"email"}, message="There is already an account with this email")
+ * @UniqueEntity(fields={"Username"}, message="There is already an account with this Username")
  */
 class User implements UserInterface
 {
@@ -85,6 +88,28 @@ class User implements UserInterface
      * @ORM\Column(type="boolean")
      */
     private $IsBanned=false;
+
+    /**
+     * @ORM\OneToMany(targetEntity=Formmattion::class, mappedBy="User")
+     */
+    private $formmattions;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $Photo;
+
+    /**
+     * @ORM\ManyToMany(targetEntity=Reclamation::class, mappedBy="User")
+     */
+    private $reclamations;
+
+    public function __construct()
+    {
+        $this->formmattions = new ArrayCollection();
+        $this->reclamations = new ArrayCollection();
+    }
+
 
 
 
@@ -233,4 +258,85 @@ class User implements UserInterface
     {
         $this->captchaCode = $captchaCode;
     }*/
+    public function __toString()
+    {
+       return $this->getUsername();
+    }
+
+    /**
+     * @return Collection<int, Formmattion>
+     */
+    public function getFormmattions(): Collection
+    {
+        return $this->formmattions;
+    }
+
+    public function addFormmattion(Formmattion $formmattion): self
+    {
+        if (!$this->formmattions->contains($formmattion)) {
+            $this->formmattions[] = $formmattion;
+            $formmattion->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeFormmattion(Formmattion $formmattion): self
+    {
+        if ($this->formmattions->removeElement($formmattion)) {
+            // set the owning side to null (unless already changed)
+            if ($formmattion->getUser() === $this) {
+                $formmattion->setUser(null);
+            }
+        }
+
+        return $this;
+    }
+
+    public function getPhoto(): ?string
+    {
+        return $this->Photo;
+    }
+
+    public function setPhoto(?string $Photo): self
+    {
+        $this->Photo = $Photo;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Reclamation>
+     */
+    public function getReclamations(): Collection
+    {
+        return $this->reclamations;
+    }
+
+    public function addReclamation(Reclamation $reclamation): self
+    {
+        if (!$this->reclamations->contains($reclamation)) {
+            $this->reclamations[] = $reclamation;
+            $reclamation->addUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeReclamation(Reclamation $reclamation): self
+    {
+        if ($this->reclamations->removeElement($reclamation)) {
+            $reclamation->removeUser($this);
+        }
+
+        return $this;
+    }
+
+
+
+
+
+
+
+
 }

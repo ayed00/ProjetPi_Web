@@ -1,0 +1,63 @@
+{% extends "reclamation/base_front_reclamation.html.twig" %}
+{% block textbanner %}
+    <h1>Reclamation </h1>
+
+    <table  border="4"  class="colored-label" aria-atomic="true">
+        <thead>
+
+        <tr>
+            <th>Id</th>
+            <th>Prenom</th>
+            <th>Nom</th>
+            <th>Type_de_reclamation</th>
+            <th>Description_de_reclamation</th>
+            <th>Etat</th>
+            <th>Message</th>
+            <th>actions</th>
+        </tr >
+        </thead>
+        <tbody>
+        {% for reclamation in reclamations %}
+            <tr style="border: #0b0b0b;color:black;">
+                <td>{{ reclamation.id }}</td>
+                <td>prenom </td>
+                <td>nom</td>
+                <td>{{ reclamation.type }}</td>
+                <td>{{ reclamation.description }}</td>
+                <td>{{ reclamation.notification.etat }}</td>
+                <td>{{ reclamation.notification.message }}</td>
+
+                <td>
+                    <!-- <a href="{{ path('reclamation_show', {'id': reclamation.id}) }}">show</a> -->
+                    <!--   <a href="{{ path('reclamation_edit', {'id': reclamation.id}) }}">edit</a> -->
+                    <form method="post" action="{{ path('reclamation_repondre', {'id': reclamation.id}) }}">
+                        <input type="hidden" name="_token" value="{{ csrf_token('Edit' ~ reclamation.id) }}">
+                        <button class="btn" style="height:40px;width: 70px;margin: 10px;margin-bottom: 5px ;background-color: white">Edit  </button>
+                    </form>
+                    {{ include('reclamation/_delete_form.html.twig') }}
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="3">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    <div class="navigation">
+        {{ knp_pagination_render(pagination) }}
+    </div>
+    <a href="{{ path('reclamation_new') }}",style>BACK</a>
+
+{% endblock %}
+
+{% block all %}
+
+
+
+{% endblock %}
+
+
+
+{% block ads %} {% endblock %}
+

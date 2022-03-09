@@ -1,0 +1,36 @@
+{% extends "avis/base_back_avis.html.twig" %}
+
+{% block back_content %}
+
+    <h1>Category</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ category.id }}</td>
+            </tr>
+            <tr>
+                <th>Name</th>
+                <td>{{ category.name }}</td>
+            </tr>
+            <tr>
+                <th>Content</th>
+                <td>{{ category.content }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <form action="{{ path('category_edit',{'id': category.id})}}">
+        <input type="submit" class="btn btn-info" value="edit"/>
+    </form>
+    <form action="{{ path('category_index') }}">
+        <input type="submit" class="btn btn-primary" value="back to list"/>
+    </form>
+
+
+{% endblock %}
+
+{% block back_footer %}
+
+{% endblock %}

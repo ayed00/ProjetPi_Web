@@ -8,8 +8,11 @@ use App\Security\EmailVerifier;
 use App\Security\UsersAuthenticator;
 use Doctrine\ORM\EntityManagerInterface;
 use MercurySeries\FlashyBundle\FlashyNotifier;
+use phpDocumentor\Reflection\Types\Null_;
 use Symfony\Bridge\Twig\Mime\TemplatedEmail;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\File\Exception\FileException;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Mime\Address;
@@ -67,6 +70,23 @@ class SecurityController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            /** @var UploadedFile $imageFile */
+            $imageFile = $form->get('Photo')->getData();
+
+            if($imageFile!=null) {
+                $originalFilename = pathinfo($imageFile->getClientOriginalName(), PATHINFO_FILENAME);
+                $newFilename = $originalFilename . '-' . uniqid() . '.' . $imageFile->guessExtension();
+                try {
+                    $imageFile->move(
+                        $this->getParameter('images_directory'),
+                        $newFilename
+                    );
+                } catch (FileException $e) {
+                    // ... handle exception if something happens during file upload
+                }
+
+                $user->setPhoto($newFilename);
+            }
             // encode the plain password
             $user->setPassword(
                 $userPasswordEncoder->encodePassword(

@@ -1,0 +1,46 @@
+{% extends "avis/base_back_avis.html.twig" %}
+
+{% block back_content %}
+    <h1>Avis</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ avi.id }}</td>
+            </tr>
+            <tr>
+                <th>Rating</th>
+                <td>{{ avi.rating }}</td>
+            </tr>
+            <tr>
+                <th>Title</th>
+                <td>{{ avi.title }}</td>
+            </tr>
+            <tr>
+                <th>Category</th>
+                <td>{{ avi.category }}</td>
+            </tr>
+            <tr>
+                <th>Content</th>
+                <td>{{ avi.content }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    {{ include('avis/_delete_form.html.twig') }}
+
+
+
+    <form action="{{ path('avis_index') }}">
+        <input type="submit" class="btn btn-primary" value="back to list"/>
+    </form>
+
+
+
+
+{% endblock %}
+
+{% block back_footer %}
+
+{% endblock %}

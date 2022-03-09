@@ -34,6 +34,51 @@ class UserController extends AbstractController
             'users' => $article,
         ]);
     }
+    /**
+     * @Route("/bannedusr", name="user_banned", methods={"GET"})
+     */
+    public function Bannedindex(Request $request,PaginatorInterface $paginator,UserRepository $userRepository): Response
+    {
+
+        $data=$userRepository->findBy(array('IsBanned'=>true),null,null,0);
+        $article=$paginator->paginate(
+            $data,
+            $request->query->getInt('page',1),
+            4
+        );
+        return $this->render('user/index.html.twig', [
+            'users' => $article,
+        ]);
+    }
+    /**
+     * @Route("/adminusr", name="user_admin", methods={"GET"})
+     */
+    public function adminindex(Request $request,PaginatorInterface $paginator,UserRepository $userRepository): Response
+    {
+
+        $data=$userRepository->findBy(array('roles'=>["ROLE_USER"]),null,null,0);
+        $article=$paginator->paginate(
+            $data,
+            $request->query->getInt('page',1),
+            4
+        );
+        return $this->render('user/index.html.twig', [
+            'users' => $article,
+        ]);
+    }
+
+    /**
+     * @Route("/admin/utilisateur/searchuser", name="utilsearchuser")
+     */
+    public function searchPlan(Request $request)
+    {
+        $repository = $this->getDoctrine()->getRepository(User::class);
+        $requestString = $request->get('searchValue');
+        $plan = $repository->findPlanBySujet($requestString);
+        return $this->render('user/utilajax.html.twig', [
+            'users' => $plan,
+        ]);
+    }
 
     /**
      * @Route("/new", name="user_new", methods={"GET", "POST"})
@@ -171,4 +216,7 @@ class UserController extends AbstractController
         return new Response(json_encode($jsonContent));
 
     }
+
+
+
 }

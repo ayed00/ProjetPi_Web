@@ -1,0 +1,12 @@
+{% extends 'base_BACK.html.twig' %}
+
+{% block title %}New Cours{% endblock %}
+
+{% block back_content %}
+    <h1>Create new Cours</h1>
+
+    {{ include('coursss/_form.html.twig') }}
+    <a href="{{ path('coursss_index') }}">back to list</a>
+
+
+{% endblock %}

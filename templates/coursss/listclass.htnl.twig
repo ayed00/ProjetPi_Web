@@ -1,0 +1,47 @@
+<h1>Cours</h1>
+
+<table class="table">
+    <thead>
+    formation name:{{ c.nom }}
+
+    <tr>
+
+        <th>Nom</th>
+        <th>formations</th>
+        <th>Description</th>
+        <th>Video</th>
+        <th>Dateajoutt</th>
+        <th>actions</th>
+    </tr>
+    </thead>
+    <tbody>
+    {% for coursss in courssses %}
+        <tr>
+
+            <td>{{ coursss.nom }}</td>
+            <td>{{ coursss.formations.nom }}</td>
+            <td>{{ coursss.description }}</td>
+            <td>
+                <video width="640" height="360" controls>
+                    <source src="{{ asset('uploads/') ~coursss.video   }}" type="video/mp4">
+                    <source src="movie.ogg" type="video/ogg">
+                    Your browser does not support the video tag.
+                </video>
+            </td>
+            <td>{{ coursss.dateajoutt ? coursss.dateajoutt|date('Y-m-d') : '' }}</td>
+            <td>
+                <a href="{{ path('coursss_show', {'id': coursss.id}) }}">s'abboner</a>
+                <a href="{{ path('coursss_edit', {'id': coursss.id}) }}">edit</a>
+            </td>
+        </tr>
+    {% else %}
+        <tr>
+            <td colspan="6">no records found</td>
+        </tr>
+    {% endfor %}
+    </tbody>
+</table>
+
+<a href="{{ path('coursss_new') }}">Create new</a>
+
+{% endblock %}

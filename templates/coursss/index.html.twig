@@ -1,0 +1,53 @@
+{% extends 'base_BACK.html.twig' %}
+
+{% block title %}Cours index{% endblock %}
+
+{% block back_content %}
+    <h1>Cours index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Nom</th>
+                <th>formations</th>
+                <th>Description</th>
+                <th>Video</th>
+                <th>Dateajoutt</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody id="tabletable" name="tabletable">
+        {% for coursss in courssses %}
+            <tr>
+                <td>{{ coursss.id }}</td>
+                <td>{{ coursss.nom }}</td>
+                <td>{{ coursss.formations.nom }}</td>
+                <td>{{ coursss.description }}</td>
+                <td>{{ coursss.video }}</td>
+                <td>{{ coursss.dateajoutt ? coursss.dateajoutt|date('Y-m-d') : '' }}</td>
+                <td>
+                    <a class="btn" href="{{ path('coursss_show', {'id': coursss.id}) }}">show</a>
+                    <a class="btn" href="{{ path('coursss_edit', {'id': coursss.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="6">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+
+        <form class="w_search">
+            <div class="sidebar-search">
+                <div class="input-group custom-search-form">
+                    <input type="text" id="searchsearch" name="searchsearch" class="form-control" placeholder="Search">
+                </div>
+                <!-- /input-group --></div></form>
+    </table>
+
+    <a class="btn" href="{{ path('coursss_new') }}">Create new</a>
+
+{% endblock %}
+{% block back_footer %}
+{% endblock %}

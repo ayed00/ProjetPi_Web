@@ -51,17 +51,17 @@
 
             <div class="collapse navbar-collapse justify-content-end align-items-center" id="navbarSupportedContent">
                 <ul class="navbar-nav">
-                    <li><a href="index.html">Home</a></li>
+                    <li><a href="{{ path('ListDQL') }}  ">Home</a></li>
                     <li><a href="about.html">About</a></li>
-                    <li><a href="courses.html">Courses</a></li>
+                    <li><a href="#">Events</a></li> {# TO DO events index !!!!!!!!!!! #}
                     <!-- Dropdown -->
                     <li class="dropdown">
                         <a class="dropdown-toggle" href="#" data-toggle="dropdown">
-                            Pages
+                            Learning Service
                         </a>
                         <div class="dropdown-menu">
-                            <a class="dropdown-item" href="elements.html">Elements</a>
-                            <a class="dropdown-item" href="course-details.html">Course Details</a>
+                            <a class="dropdown-item" href="{{ path('affichage_cours_front') }}">Courses</a>
+                            <a class="dropdown-item" href="{{ path('ListDQL') }}">Formations</a>
                         </div>
                     </li>
                     <li class="dropdown">
@@ -80,7 +80,12 @@
                             <span class="lnr lnr-magnifier" id="search"></span>
                         </button>
                     </li>
-                    <li><a href="{{ path('app_login') }}">Sign in</a></li>
+                    {% if app.user %}
+                        <li><a href="{{ path('app_logout') }}">Sign out</a></li>
+                    {% else %}
+                        <li><a href="{{ path('app_login') }}">Sign in</a></li>
+                    {% endif %}
+
                 </ul>
             </div>
         </div>

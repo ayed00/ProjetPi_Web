@@ -1,0 +1,19 @@
+
+
+{% extends "reclamation/base_back_reclamation.html.twig" %}
+{% block back_content %}
+
+
+    <h1>Edit NotificationReclamation</h1><br>
+
+    {{ include('notification_reclamation/_form.html.twig', {'button_label': 'Update'}) }}
+    <br>
+    <a href="{{ path('reclamation_index') }}">back to list</a>
+
+
+
+{% endblock %}
+
+{% block back_footer %}
+
+{% endblock %}

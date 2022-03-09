@@ -1,0 +1,19 @@
+{% for utils in Coursss %}
+
+    <tr>
+        <td>{{ utils.id }}</td>
+        <td>{{ utils.nom }}</td>
+        <td>{{ utils.formations.nom }}</td>
+        <td>{{ utils.description }}</td>
+        <td>{{ utils.video }}</td>
+        <td>{{ utils.dateajoutt ? utils.dateajoutt|date('Y-m-d') : '' }}</td>
+        <td>
+            <a href="{{ path('coursss_show', {'id': utils.id}) }}">show</a>
+            <a href="{{ path('coursss_edit', {'id': utils.id}) }}">edit</a>
+        </td>
+    </tr>
+{% else %}
+    <tr>
+        <td colspan="6">no records found</td>
+    </tr>
+{% endfor %}

@@ -1,0 +1,26 @@
+
+
+{% extends "reclamation/base_back_reclamation.html.twig" %}
+
+
+{% block back_content %}
+
+
+
+    <h1>Repondre Reclamation</h1>
+
+    {{ include('reclamation/_formnotif.html.twig') }}
+
+    <a href="{{ path('reclamation_index') }}">back to list</a>
+    <a href="{{ path('afficheReclamation') }}">Afficher les reclamations</a>
+
+
+
+
+{% endblock %}
+
+{% block back_footer %}
+
+{% endblock %}
+
+
