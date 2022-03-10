@@ -1,0 +1,43 @@
+{% extends 'base_BACK.html.twig' %}
+
+{% block title %}Cours{% endblock %}
+
+{% block back_content %}
+
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ coursss.id }}</td>
+            </tr>
+            <tr>
+                <th>Nom</th>
+                <td>{{ coursss.nom }}</td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td>{{ coursss.description }}</td>
+            </tr>
+            <tr>
+                <th>Video</th>
+                <td>{{ coursss.video }}</td>
+            </tr>
+            <tr>
+                <th>formations</th>
+                <td>{{ coursss.formations }}</td>
+            </tr>
+
+            <tr>
+                <th>Dateajoutt</th>
+                <td>{{ coursss.dateajoutt ? coursss.dateajoutt|date('Y-m-d') : '' }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('coursss_index') }}">back to list</a>
+
+    <a href="{{ path('coursss_edit', {'id': coursss.id}) }}">edit</a>
+
+    {{ include('coursss/_delete_form.html.twig') }}
+{% endblock %}

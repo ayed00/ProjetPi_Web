@@ -1,0 +1,34 @@
+
+    <h1>NotificationReclamation index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Etat</th>
+                <th>Message</th>
+                <th>Type</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for notification_reclamation in notification_reclamations %}
+            <tr>
+                <td>{{ notification_reclamation.id }}</td>
+                <td>{{ notification_reclamation.etat }}</td>
+                <td>{{ notification_reclamation.message }}</td>
+
+                <td>
+                    <a href="{{ path('notification_reclamation_show', {'id': notification_reclamation.id}) }}">show</a>
+                    <a href="{{ path('notification_reclamation_edit', {'id': notification_reclamation.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="4">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('notification_reclamation_new') }}">Create new</a>

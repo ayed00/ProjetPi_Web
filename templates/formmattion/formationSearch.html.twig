@@ -1,0 +1,17 @@
+{% for formmattions in formmattion %}
+    <tr>
+        <td>{{ formmattions.id }}</td>
+        <td>{{ formmattions.nom }}</td>
+        <td>{{ formmattions.description }}</td>
+        <td>{{ formmattions.image }}</td>
+        <td>{{ formmattions.prix }}</td>
+        <td>{{ formmattions.datede ? formmattion.datede|date('Y-m-d') : '' }}</td>
+        <td>{{ formmattions.datefi ? formmattion.datefi|date('Y-m-d') : '' }}</td>
+
+
+    </tr>
+{% else %}
+    <tr>
+        <td colspan="8">no records found</td>
+    </tr>
+{% endfor %}

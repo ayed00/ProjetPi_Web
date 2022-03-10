@@ -51,36 +51,47 @@
 
             <div class="collapse navbar-collapse justify-content-end align-items-center" id="navbarSupportedContent">
                 <ul class="navbar-nav">
-                    <li><a href="index.html">Home</a></li>
-                    <li><a href="about.html">About</a></li>
-                    <li><a href="courses.html">Courses</a></li>
+                    <li><a href="{{ path('ListDQL') }}  ">Home</a></li>
+                    <li class="dropdown">
+                        <a class="dropdown-toggle" href="#" data-toggle="dropdown">
+                            Learning Services
+                        </a>
+                        <div class="dropdown-menu">
+                            <a class="dropdown-item" href="{{ path('affichage_cours_front') }}">Courses</a>
+                            <a class="dropdown-item" href="{{ path('ListDQL') }}">Formations</a>
+                        </div>
+                    </li>
+                   {# TO DO events index !!!!!!!!!!! #}
                     <!-- Dropdown -->
                     <li class="dropdown">
                         <a class="dropdown-toggle" href="#" data-toggle="dropdown">
-                            Pages
+                            Events
                         </a>
                         <div class="dropdown-menu">
-                            <a class="dropdown-item" href="elements.html">Elements</a>
-                            <a class="dropdown-item" href="course-details.html">Course Details</a>
+                            <a class="dropdown-item" href="{{ path('events_calendar') }}">Events Calendar</a>
+                            <a class="dropdown-item" href="{{ path('app_events_reservation_new') }}">Events Resevations</a>
                         </div>
-                    </li>
+                    <li><a href="{{ path('avis_new') }}  ">Rate Us</a></li>
                     <li class="dropdown">
                         <a class="dropdown-toggle" href="#" data-toggle="dropdown">
-                            Blog
+                            Reclamation
                         </a>
                         <div class="dropdown-menu">
-                            <a class="dropdown-item" href="blog-home.html">Blog Home</a>
-                            <a class="dropdown-item" href="blog-single.html">Blog Details</a>
+                            <a class="dropdown-item" href="{{ path('reclamation_new') }}">Reclamé</a>
+                            <a class="dropdown-item" href="{{ path('afficheReclamation') }}">Afficher les Reclamations</a>
                         </div>
                     </li>
-                    <li><a href="contacts.html">Contacts</a></li>
-
                     <li>
                         <button class="search">
                             <span class="lnr lnr-magnifier" id="search"></span>
                         </button>
                     </li>
-                    <li><a href="{{ path('app_login') }}">Sign in</a></li>
+                    {% if app.user %}
+                        <li><a href="{{ path('app_logout') }}">Sign out</a></li>
+                    {% else %}
+                        <li><a href="{{ path('app_login') }}">Sign in</a></li>
+                    {% endif %}
+
                 </ul>
             </div>
         </div>
@@ -105,6 +116,7 @@
         <div class="row justify-content-center fullscreen align-items-center">
             <div class="col-lg-5 col-md-8 home-banner-left">
                 {% block home1 %}
+                {% block textbanner %}
                 <h1 class="text-white">
                     Take the first step <br />
                     to learn with us
@@ -115,6 +127,7 @@
                     telescope known as the Hubble.
                 </p>
                 {% endblock %}
+                {% endblock %}
             </div>
             <div class="offset-lg-2 col-lg-5 col-md-12 home-banner-right">
                 <img class="img-fluid" src="{{ asset('frontoffice/img/header-img.png') }}" alt="" />
@@ -123,6 +136,7 @@
     </div>
 </section>
 {% endblock %}
+{% block all %}
 <!-- ================ End banner Area ================= -->
 
 <!-- ================ Start Feature Area ================= -->
@@ -692,6 +706,7 @@
         </div>
     </div>
 </section>
+{% endblock %}
 {% endblock %}
 <!-- ================ End Blog Post Area ================= -->
 

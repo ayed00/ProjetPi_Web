@@ -1,0 +1,11 @@
+{% extends 'base_BACK.html.twig' %}
+
+{% block title %}New Formation{% endblock %}
+
+{% block back_content %}
+    <h1>Create new Formation</h1>
+
+    {{ include('formmattion/_form.html.twig') }}
+
+    <a href="{{ path('formmattion_index') }}">back to list</a>
+{% endblock %}

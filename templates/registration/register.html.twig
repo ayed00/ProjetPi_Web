@@ -26,9 +26,12 @@
              <td class="text-black">{{ form_errors(registrationForm.email) }}</td>
         </tr>
         <tr>
+
             <td class="text-black">{{ form_label(registrationForm.Username,"Username :") }}</td>
             <td >{{ form_widget(registrationForm.Username,{'attr': {'class': 'input100 form-control'}}) }}</td>
             <td class="text-black">{{ form_errors(registrationForm.Username) }}</td>
+            <td>{{ form_row(registrationForm.Photo) }}</td>
+
         </tr>
         <tr>
              <td class="text-black">{{ form_label(registrationForm.plainPassword,"Password :") }}</td>

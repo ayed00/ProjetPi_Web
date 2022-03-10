@@ -11,9 +11,6 @@
 
         <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
         <meta name="viewport" content="width=device-width" />
-
-
-        <!-- Bootstrap core CSS     -->
         <link href="{{ asset('backoffice/css/bootstrap.min.css') }}" rel="stylesheet" />
 
         <!-- Animation library for notifications   -->
@@ -60,13 +57,13 @@
 
             <ul class="nav">
                 <li> <!--class="active"-->
-                    <a href="{{ path('user_index') }}">
+                    <a href="{{ path('stat_app') }}">
                         <i class="pe-7s-graph"></i>
                         <p>Dashboard</p>
                     </a>
                 </li>
                 <li>
-                    <a href="{{ path('user_index') }}">
+                    <a href="{{ path('app_profile') }}">
                         <i class="pe-7s-user"></i>
                         <p>User Profile</p>
                     </a>
@@ -74,19 +71,45 @@
                 <li>
                     <a href="{{ path('user_index') }}">
                         <i class="pe-7s-note2"></i>
-                        <p>Table List</p>
+                        <p>User List</p>
                     </a>
                 </li>
                 <li>
-                    <a href="{{ path('user_index') }}">
+                    <a href="{{ path('formmattion_index') }}">
+                        <i class="pe-7s-note2"></i>
+                        <p>Formations List</p>
+                    </a>
+                </li>
+                <li>
+                    <a href="{{ path('coursss_index') }}">
+                        <i class="pe-7s-note2"></i>
+                        <p>Courses List</p>
+                    </a>
+                </li>
+                <li>
+                    <a href="{{ path('app_events_reservation_index') }}">
+                        <i class="pe-7s-timer"></i>
+                        <p>Reservation</p>
+                    </a>
+                </li>
+
+                <li>
+                    <a href="{{ path('calendar_index') }}">
                         <i class="pe-7s-news-paper"></i>
-                        <p>Typography</p>
+                        <p>Events List</p>
+                    </a>
+                </li>
+
+                <li>
+                    <a href="{{ path('avis_index') }}">
+                        <i class="pe-7s-news-paper"></i>
+                        <p>Ratings</p>
                     </a>
                 </li>
                 <li>
-                    <a href="{{ path('user_index') }}">
+                    <a href="{{ path('category_index') }}">
                         <i class="pe-7s-science"></i>
-                        <p>Icons</p>
+                        <p>Category</p>
                     </a>
                 </li>
                 <li>
@@ -99,6 +122,13 @@
                     <a href="{{ path('user_index') }}">
                         <i class="pe-7s-bell"></i>
                         <p>Notifications</p>
+                    </a>
+                </li>
+
+                <li >
+                    <a href="{{ path('reclamation_index') }}">
+                        <i class="pe-7s-attention"></i>
+                        <p>Reclamations</p>
                     </a>
                 </li>
 
@@ -459,6 +489,58 @@
 <!-- Light Bootstrap Table DEMO methods, don't include it in your project! -->
 <script src="{{ asset('backoffice/js/demo.js') }}"></script>
 {% endblock %}
+<script>
+    $( document ).ready(function() {
+        var currentRequest = null;
+        $("#searchsearch").keyup(function(e){
+            var value = $(this).val();
+            if(currentRequest != null) {
+                currentRequest.abort();
+            }
+            currentRequest = $.ajax({
+
+                url : "{{ path('utilsearch') }}",
+                type : 'GET',
+                data: {
+                    'searchValue' : value
+                },
+
+                success : function(retour)
+                {
+                    $('#tabletable').html(retour);
+
+                },
+            });
+            return false;
+        });
+    });
+</script>
+<script>
+    $( document ).ready(function() {
+        var currentRequest = null;
+        $("#searchsearch1").keyup(function(e){
+            var value = $(this).val();
+            if(currentRequest != null) {
+                currentRequest.abort();
+            }
+            currentRequest = $.ajax({
+
+                url : "{{ path('utilsearchuser') }}",
+                type : 'GET',
+                data: {
+                    'searchValue' : value
+                },
+
+                success : function(retour)
+                {
+                    $('#tabletable1').html(retour);
+
+                },
+            });
+            return false;
+        });
+    });
+</script>
 
 
 

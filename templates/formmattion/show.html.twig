@@ -1,0 +1,46 @@
+{% extends 'base_BACK.html.twig' %}
+
+{% block title %}Formation{% endblock %}
+
+{% block back_content %}
+    <h1>Formmattion</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ formmattion.id }}</td>
+            </tr>
+            <tr>
+                <th>Nom</th>
+                <td>{{ formmattion.nom }}</td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td>{{ formmattion.description }}</td>
+            </tr>
+            <tr>
+                <th>Image</th>
+                <td>{{ formmattion.image }}</td>
+            </tr>
+            <tr>
+                <th>Prix</th>
+                <td>{{ formmattion.prix }}</td>
+            </tr>
+            <tr>
+                <th>Datede</th>
+                <td>{{ formmattion.datede ? formmattion.datede|date('Y-m-d') : '' }}</td>
+            </tr>
+            <tr>
+                <th>Datefi</th>
+                <td>{{ formmattion.datefi ? formmattion.datefi|date('Y-m-d') : '' }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('formmattion_index') }}">back to list</a>
+
+    <a href="{{ path('formmattion_edit', {'id': formmattion.id}) }}">edit</a>
+
+    {{ include('formmattion/_delete_form.html.twig') }}
+{% endblock %}

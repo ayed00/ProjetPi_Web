@@ -1,0 +1,62 @@
+{% extends 'base_BACK.html.twig' %}
+
+{% block title %}Formation {% endblock %}
+
+{% block back_content %}
+    <h1>Formation index</h1>
+
+               {{ form_start(form)}}
+        <div>  {{ form_row(form.nom) }}  {{ form_row(form.description) }}</div>
+               {{ form_widget(form.Search) }}
+
+
+    {{ form_end(form) }}
+    </table>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Nom</th>
+                <th>Description</th>
+                <th>Image</th>
+                <th>Prix</th>
+                <th>Formateur</th>
+                <th>Datede</th>
+                <th>Datefi</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for formmattions in formmattion%}
+            <tr>
+                <td>{{ formmattions.id }}</td>
+                <td>{{ formmattions.nom }}</td>
+                <td>{{ formmattions.description }}</td>
+                <td><img src="{{ asset('uploads/') ~formmattions.image}}" width="100px" height="50px" alt="" class="img-fluid"></td>
+                <td>{{ formmattions.prix }}</td>
+                <td>{{ formmattions.User.fullname }}</td>
+                <td>{{ formmattions.datede ? formmattions.datede|date('Y-m-d') : '' }}</td>
+                <td>{{ formmattions.datefi ? formmattions.datefi|date('Y-m-d') : '' }}</td>
+                <td>
+                    <a class="btn" href="{{ path('formmattion_show', {'id': formmattions.id}) }}">show</a>
+                    <a class="btn" href="{{ path('formmattion_edit', {'id': formmattions.id}) }}">edit</a>
+                    <a class="btn" href="{{ path('formmattion_list', {'id': formmattions.id}) }}) }}">Imprimmer</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="8">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    <div class="navigation">
+        {{ knp_pagination_render(formmattion   ) }}
+    </div>
+
+    <a class="btn" href="{{ path('formmattion_new') }}">Create new</a>
+
+{% endblock %}
+{% block back_footer %}
+{% endblock %}

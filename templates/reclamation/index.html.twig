@@ -1,0 +1,71 @@
+{% extends "base_BACK.html.twig" %}
+{% block back_content %}
+    {% block body %}
+    <h1>Reclamation </h1>
+
+    <table class="table">
+        <thead>
+
+            <tr>
+
+                <th>Id</th>
+                <th>User</th>
+
+                <th>Type_de_reclamation</th>
+                <th>Description_de_reclamation</th>
+                <th>Etat</th>
+                <th>Message</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for reclamation in reclamations %}
+            <tr >
+                {% if reclamation.Notification.etat == "en cours de traitement" %}
+                {% set foo = 'red' %}
+                    {% else %}
+                {%  set foo ='green'  %}
+
+                {% endif %}
+                <td >{{ reclamation.id }}</td>
+                <td>{{ reclamation.User  }}</td>
+
+                <td>{{ reclamation.type }}</td>
+                <td>{{ reclamation.description }}</td>
+
+                <td style="color: {{ foo }}">{{ reclamation.Notification.etat}}</td>
+                <td>{{ reclamation.Notification.message}}</td>
+
+
+                <td >
+
+                    <form method="post" action="{{ path('notification_reclamation_edit', {'id': reclamation.Notification.id}) }}">
+                        <input type="hidden" name="_token" value="{{ csrf_token('Edit' ~ reclamation.Notification.id) }}">
+                        <button class="btn">Repondre</button>
+                    </form>
+                    {{ include('reclamation/_delete_form2.html.twig') }}
+
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="3">no records found</td>
+            </tr>
+
+        {% endfor %}
+        </tbody>
+    </table>
+
+
+
+    {{ knp_pagination_render(pagination) }}
+
+    <a href="{{ path('reclamation_new') }}">Create new</a>
+
+
+
+
+    {% endblock %}
+{% endblock %}
+{% block back_footer %}
+{% endblock %}

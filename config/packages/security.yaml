@@ -30,10 +30,34 @@ security:
 
             # https://symfony.com/doc/current/security/impersonating_user.html
             # switch_user: true
+            remember_me:
+                secret: '%kernel.secret%' # required
+                lifetime: 604800 # 1 week in seconds
+                # by default, the feature is enabled by checking a
+                # checkbox in the login form (see below), uncomment the
+                # following line to always enable it.
+                always_remember_me: true
 
     # Easy way to control access for large sections of your site
     # Note: Only the *first* access control that matches will be used
     access_control:
         #- { path: ^/admin, roles: ROLE_ADMIN }
         # - { path: ^/profile, roles: ROLE_USER }
+    - { path: ^/login, roles: IS_AUTHENTICATED_ANONYMOUSLY }
     - { path: ^/user, roles: ROLE_ADMIN }
+    - { path: ^/formmattion, roles: [ROLE_FORMATEUR, ROLE_ADMIN]  }
+    - { path: ^/coursss, roles: [ROLE_FORMATEUR, ROLE_ADMIN]  }
+    - { path: ^/profile, roles: ROLE_USER }
+    - { path: ^/backend_reclamation, roles: ROLE_USER }
+    - { path: ^/notification/reclamation, roles: ROLE_ADMIN }
+    - { path: ^/avis, roles: ROLE_USER }
+    - { path: ^/category, roles: ROLE_USER }
+    - { path: ^/events/reservation/new, roles: ROLE_USER }
+    - { path: ^/calendar, roles: [ROLE_FORMATEUR, ROLE_ADMIN]  }
+    - { path: ^/events/calendar, roles: ROLE_USER   }
+    - { path: ^/events/reservation, roles: ROLE_FORMATEUR }
+
+
+
+
+

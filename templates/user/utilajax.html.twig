@@ -1,0 +1,21 @@
+{% for utils in users %}
+
+    <tr>
+        <td>{{ utils.id }}</td>
+        <td>{{ utils.Username }}</td>
+        <td>{{ utils.email }}</td>
+        <td>{{ utils.fullname }}</td>
+        <td>{{ utils.naissance|date("m/d/y") }}</td>
+        <td>{{ utils.roles ? utils.roles|json_encode : '' }}</td>
+        <td>{{ utils.isVerified ?'YES':'NO' }}</td>
+        <td>{{ utils.isBanned ?'YES':'NO' }}</td>
+        <td>
+            <a href="{{ path('user_show', {'id': utils.id}) }}">show</a>
+            <a href="{{ path('user_edit', {'id': utils.id}) }}">edit</a>
+        </td>
+    </tr>
+{% else %}
+    <tr>
+        <td colspan="6">no records found</td>
+    </tr>
+{% endfor %}

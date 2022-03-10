@@ -1,0 +1,64 @@
+{% extends "base_BACK.html.twig" %}
+{% block back_content %}
+
+    <h1>Avis</h1>
+
+    <a href="{{ path('avis_new') }}">Create Avis</a>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>User</th>
+                <th>Rating</th>
+                <th>Title</th>
+                <th>Category</th>
+                <th>Content</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for avi in avis %}
+            <tr>
+                <td>{{ avi.id }}</td>
+                <td>{{ avi.User }}</td>
+                <td>{{ avi.rating }}</td>
+                <td>{{ avi.title }}</td>
+                <td>{{ avi.category }}</td>
+                <td>{{ avi.content }}</td>
+                <td>
+
+                    <form action="{{ path('avis_show',{'id': avi.id})}}">
+                        <input type="submit" class="btn btn-info" value="show"/>
+                    </form>
+
+                </td>
+
+                <td>
+
+                    <form action="{{ path('Qrcode',{'categ': avi.category,'title': avi.title})}}">
+                        <input type="submit" class="btn btn-info" value="QR Search"/>
+                    </form>
+
+                </td>
+
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="6">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+     <div style="margin-left: 900px">
+        {% if qrCode %}
+            <img src="{{ qrCode }}" alt="qr-code">
+        {% endif %}
+    </div>
+
+
+{% endblock %}
+
+{% block back_footer %}
+
+{% endblock %}

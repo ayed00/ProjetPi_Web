@@ -1,0 +1,14 @@
+{% extends 'base_BACK.html.twig' %}
+
+{% block title %}Edit Formation{% endblock %}
+
+{% block back_content %}
+    <h1>Edit Formattion</h1>
+
+    {{ include('formmattion/_form.html.twig', {'button_label': 'Update'}) }}
+
+    <a href="{{ path('formmattion_index') }}">back to list</a>
+
+    {{ include('formmattion/_delete_form.html.twig') }}
+
+{% endblock %}

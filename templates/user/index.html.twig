@@ -49,7 +49,7 @@
             <th>actions</th>
         </tr>
         </thead>
-        <tbody>
+        <tbody id="tabletable1">
             {{ knp_pagination_render(users) }}
         {% for user in users %}
             <tr>
@@ -73,9 +73,28 @@
 
         {% endfor %}
         </tbody>
+        <form class="w_search">
+            <div class="sidebar-search">
+                <div class="input-group custom-search-form">
+                    <input type="text" id="searchsearch1" name="searchsearch" class="form-control" placeholder="Search">
+                </div>
+                <!-- /input-group --></div></form>
     </table>
-
+<tr>
+   <th>
 <a class="btn" href="{{ path('user_new') }}">Create new</a>
+   </th>
+    {% if users[0].isBanned is not empty and users[0].isBanned  %}
+        <td>
+            <a class="btn" href="{{ path('user_index') }}">All Users</a>
+        </td>
+    {% else %}
+    <td>
+        <a class="btn" href="{{ path('user_banned') }}">Only Banned</a>
+    </td>
+    {% endif %}
+</tr>
+
 {% endblock %}
 
 {% block back_footer %}
